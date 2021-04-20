@@ -1,2 +1,14 @@
+# Ignore backup and temp files
 *~$*
 *.mdzip.bak
+
+# Igore cache and compiled files
+*.cache/
+*.gdb_history
+*.o
+*.a
+*.elf
+*.hex
+*.map
+*controller
+*compile_commands.json
