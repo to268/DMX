@@ -1,7 +1,7 @@
 CC?=gcc
 
 # Basic CFLAGS
-CFLAGS_BASE=-Wall -I include/ \
+CFLAGS_BASE=-Wall -std=c17 -I include/ \
 			-fomit-frame-pointer -fstack-protector-strong
 
 # Normal CFLAGS
