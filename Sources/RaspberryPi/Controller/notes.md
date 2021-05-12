@@ -1,15 +1,7 @@
-# USB communication with the DMX chain
+# GPIO communication to an Arduino DMX capable
 
-debian pakage:
-
-libusb-1.0-0-dev/stable 2:1.0.22-2 armhf\
-  userspace USB programming library development files\
-
-Compile lib parameter: -lusb-1.0\
-
-doc:
-[http://libusb.sourceforge.net/api-1.0/group__libusb__syncio.html](sync-doc)\
-[http://libusb.sourceforge.net/api-1.0/group__libusb__asyncio.html](async-doc)
+- links:
+[https://www.ics.com/blog/how-control-gpio-hardware-c-or-c](gpio)
 
 # Wifi hotspot setup
 [https://www.raspberrypi.org/documentation/configuration/wireless/access-point-routed.md](rpi-doc-wifi)\

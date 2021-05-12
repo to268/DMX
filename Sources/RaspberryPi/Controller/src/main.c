@@ -2,14 +2,13 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include "receiver.h"
-#include "usb.h"
 
 void handle_args(int argc, char **argv);
 
 /*  Launch process:
  *  Handle Arguments
  *  Launch Reciver Socket Thread
- *  Launch Usb Thread
+ *  Launch Gpio Thread
  */
 
 int main(int argc, char **argv) {
@@ -20,13 +19,8 @@ int main(int argc, char **argv) {
     pthread_t receiver;
     pthread_create(&receiver, NULL, receiver_thread, NULL);
 
-    /* Launch Usb Thread */
-    pthread_t usb;
-    pthread_create(&usb, NULL, usb_thread, NULL);
-
     /* Wait for Threads */
     pthread_join(receiver, NULL);
-    pthread_join(usb, NULL);
 
     return EXIT_SUCCESS;
 }
