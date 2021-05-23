@@ -9,7 +9,7 @@ CFLAGS=$(CFLAGS_BASE) -Og -g3
 # Debug CFLAGS
 CFLAGS_RELEASE=$(CFLAGS_BASE) -O2
 
-LDFLAGS=-lpthread
+LDFLAGS=-lpthread -lpigpio
 BIN=controller
 
 C_FILES=$(shell find ./src -type f -name "*.c")

@@ -22,13 +22,13 @@ int main(int argc, char **argv) {
     /* Initialize shared_data struct */
     struct shared_data* shared = initializeshared_data();
 
-    /* Launch Reciver Socket Thread */
-    pthread_t receiver;
-    pthread_create(&receiver, NULL, receiver_thread, (void*)shared);
-
     /* Launch Gpio Socket Thread */
     pthread_t gpio;
     pthread_create(&gpio, NULL, gpio_thread, (void*)shared);
+
+    /* Launch Reciver Socket Thread */
+    pthread_t receiver;
+    pthread_create(&receiver, NULL, receiver_thread, (void*)shared);
 
     /* Wait for Threads */
     pthread_join(receiver, NULL);

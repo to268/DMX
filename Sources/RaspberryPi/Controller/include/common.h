@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <pthread.h>
 
-#define BUFFER_SIZE 4096
+#define BUFFER_SIZE 32
 
 /* Constant values for the shared_data modified variable */
 #define STATE_PROCESSED 0
