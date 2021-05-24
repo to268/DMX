@@ -12,10 +12,10 @@ void* receiver_thread(void* arg);
 void socket_init(struct shared_data* shared);
 void socket_accept(int* server_fd, struct sockaddr_in* address, int* addrlen,
                     struct shared_data* shared);
-void socket_handle(int client_fd, struct shared_data* shared);
+void socket_handle(int client_fd, int server_fd, struct shared_data* shared);
 
-void inline send_error(int client_fd);
-void inline send_ack(int client_fd);
+inline void send_error(int client_fd);
+inline void send_ack(int client_fd);
 
 void error(char* msg, struct shared_data* shared);
 
@@ -81,12 +81,12 @@ void socket_accept(int* server_fd, struct sockaddr_in* address, int* addrlen,
 
         printf("New client (id %d)\n", client_fd);
 
-        socket_handle(client_fd, shared);
+        socket_handle(client_fd, *server_fd, shared);
     }
     close(*server_fd);
 }
 
-void socket_handle(int client_fd, struct shared_data* shared) {
+void socket_handle(int client_fd, int server_fd, struct shared_data* shared) {
     int read_idx;
     char tmp[BUFFER_SIZE];
 
@@ -106,7 +106,8 @@ void socket_handle(int client_fd, struct shared_data* shared) {
         send_ack(client_fd);
         free_shared_data(shared);
         close(client_fd);
-        exit(0);
+        close(server_fd);
+        exit(EXIT_SUCCESS);
     }
 
     /* Acquire the lock to write on the shared memory */
@@ -129,11 +130,11 @@ void socket_handle(int client_fd, struct shared_data* shared) {
     close(client_fd);
 }
 
-void inline send_ack(int client_fd) {
+inline void send_ack(int client_fd) {
     send(client_fd, ACK_MSG, strlen(ACK_MSG), 0);
 }
 
-void inline send_error(int client_fd) {
+inline void send_error(int client_fd) {
     send(client_fd, ERROR_MSG, strlen(ERROR_MSG), 0);
 }
 

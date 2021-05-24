@@ -63,9 +63,9 @@ int gpio_send(char* buffer) {
         return 0;
     }
 
-    printf("channel higher half: %d\n", data.channel_high);
-    printf("channel lower half: %d\n", data.channel_low);
-    printf("channel value: %d\n", data.value);
+    printf("Channel higher half: %d\n", data.channel_high);
+    printf("Channel lower half: %d\n", data.channel_low);
+    printf("Channel value: %d\n", data.value);
 
     /* Initialize the gpio library */
     gpioInitialise();
@@ -101,8 +101,8 @@ int i2c_convert(char* buffer, struct i2c_data* data) {
     char* idx = strstr(buffer, " ");
     if (idx <= 0)
         return 0;
-    int lenght = idx - buffer;
-    strncpy(channel_str, buffer, lenght);
+    int length = idx - buffer;
+    strncpy(channel_str, buffer, length);
 
     /* Copy the second value */
     idx++;

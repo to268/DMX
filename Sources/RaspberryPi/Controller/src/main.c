@@ -6,7 +6,7 @@
 #include "gpio.h"
 
 void handle_args(int argc, char **argv);
-struct shared_data* initializeshared_data(void);
+struct shared_data* initialize_shared_data(void);
 void free_shared_data(struct shared_data* ptr);
 
 /*  Launch process:
@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
     handle_args(argc, argv);
 
     /* Initialize shared_data struct */
-    struct shared_data* shared = initializeshared_data();
+    struct shared_data* shared = initialize_shared_data();
 
     /* Launch Gpio Socket Thread */
     pthread_t gpio;
@@ -45,16 +45,19 @@ void handle_args(int argc, char **argv) {
         return;
     }
 
-    /* Print arguments for now */
-    printf("Provided Arguments: ");
-    for (int i = 1; i < argc; i++) {
-        printf("%s ", argv[i]);
+    if (!strcmp(argv[1], "version")) {
+#ifdef RELEASE
+        printf("Release Version\n");
+#else
+        printf("Debug Version\n");
+#endif
+        exit(EXIT_SUCCESS);
     }
 
     printf("\n");
 }
 
-struct shared_data* initializeshared_data(void) {
+struct shared_data* initialize_shared_data(void) {
     /* Allocate the shared_data struct */
     struct shared_data* shared = malloc(sizeof(struct shared_data));
 
