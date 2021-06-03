@@ -5,7 +5,7 @@
 #include <string.h>
 
 /* Change the slave address accordingly */
-#define I2C_SLAVE_ADDRESS 0b00100
+#define I2C_SLAVE_ADDRESS 0b0000100
 
 #define I2C_MAX_NUMBER_LENGTH 4
 #define I2C_MAX_DATA_LENGTH 7
